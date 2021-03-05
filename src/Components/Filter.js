@@ -10,6 +10,7 @@ function Filter() {
 	const [number, setNumber] = useState(20);
 	const [directFlight, setDirectFlight] = useState("All flights");
 	const [sorting, setSorting] = useState("price");
+	const [order, setOrder] = useState(1);
 
 	// Sorting section
 	const originCities = ["PRG", "SXF", "WAW", "PED", "AAA"]; // AAA is not valid
@@ -17,6 +18,7 @@ function Filter() {
 	const numberResults = [5, 10, 20, 30, 40, 50];
 	const directOrTransfer = ["All flights", "Direct"];
 	const sortingOptions = ["price", "duration", "quality", "date"];
+	const orderOptions = [0, 1];
 
 	// fetch section
 	async function fetchDataSearch() {
@@ -24,7 +26,7 @@ function Filter() {
 		const response = await fetch(
 			`https://api.skypicker.com/flights?fly_from=${origin}&fly_to=${destination}&partner=picky&limit=${number}&direct_flights=${
 				directFlight === "Direct" ? 1 : 0
-			}&sort=${sorting}&asc=1`
+			}&sort=${sorting}&asc=${order}`
 		);
 
 		const data = await response.json();
@@ -116,6 +118,20 @@ function Filter() {
 							{sortingOptions.map((r, i) => (
 								<option key={i} value={r}>
 									{r.charAt(0).toUpperCase() + r.slice(1)}
+								</option>
+							))}
+						</select>
+					</form>
+				</label>
+
+				<label>
+					Sort by:
+					<form className="border m-2">
+						{" "}
+						<select onChange={(e) => setOrder(e.target.value)} defaultValue={order}>
+							{orderOptions.map((r, i) => (
+								<option key={i} value={r}>
+									{r === 0 ? "Descending" : "Ascending"}
 								</option>
 							))}
 						</select>
