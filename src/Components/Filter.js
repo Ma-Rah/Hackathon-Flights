@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Flight from "./Flight";
 
-function Filter({ item }) {
+function Filter() {
 	// state section
 	const [searchResults, setSearchResults] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -8,40 +9,28 @@ function Filter({ item }) {
 	const [destination, setDestination] = useState("VLC");
 	const [number, setNumber] = useState(20);
 	const [directFlight, setDirectFlight] = useState("All flights");
-	// const [sorting,setSorting] = useState("Price")
+	const [sorting, setSorting] = useState("price");
 
 	// Sorting section
 	const originCities = ["PRG", "SXF", "WAW", "PED", "AAA"]; // AAA is not valid
 	const destinationCities = ["VLC", "BCN", "MAD", "MXP", "ATH"];
 	const numberResults = [5, 10, 20, 30, 40, 50];
 	const directOrTransfer = ["All flights", "Direct"];
-	// const sortingOptions = [""]
-
-	// 	<label>
-	// 	Sort by:
-	// 	<form className="border m-2">
-	// 		{" "}
-	// 		<select onChange={(e) => setSorting(e.target.value)} defaultValue={sorting}>
-	// 			{sortingOptions.map((r, i) => (
-	// 				<option key={i} value={r}>
-	// 					 {r}
-	// 				</option>
-	// 			))}
-	// 		</select>
-	// 	</form>
-	// </label>
+	const sortingOptions = ["price", "duration", "quality", "date"];
 
 	// fetch section
 	async function fetchDataSearch() {
+		console.log("data fetched");
 		const response = await fetch(
 			`https://api.skypicker.com/flights?fly_from=${origin}&fly_to=${destination}&partner=picky&limit=${number}&direct_flights=${
 				directFlight === "Direct" ? 1 : 0
-			}`
+			}&sort=${sorting}&asc=1`
 		);
+
 		const data = await response.json();
 		try {
 			setSearchResults(data && data.data);
-			console.log(data.data);
+			// console.log(data.data);
 			setIsLoading(false);
 		} catch (err) {
 			console.error(err);
@@ -51,6 +40,10 @@ function Filter({ item }) {
 	function filter() {
 		fetchDataSearch();
 	}
+
+	useEffect(() => {
+		fetchDataSearch();
+	}, []);
 
 	return (
 		<div>
@@ -114,26 +107,34 @@ function Filter({ item }) {
 				</label>
 
 				{/* Sorting */}
-				{/* 
+
 				<label>
 					Sort by:
 					<form className="border m-2">
 						{" "}
 						<select onChange={(e) => setSorting(e.target.value)} defaultValue={sorting}>
-							{sorting.map((r, i) => (
+							{sortingOptions.map((r, i) => (
 								<option key={i} value={r}>
-									{r}
+									{r.charAt(0).toUpperCase() + r.slice(1)}
 								</option>
 							))}
 						</select>
 					</form>
-				</label> */}
+				</label>
 
 				{/* Search with filter */}
 				<button className="border bg-green-300  p-1" onClick={filter}>
 					Filter
 				</button>
 			</section>
+
+			{isLoading ? (
+				<h1>Loading...</h1>
+			) : searchResults.length === 0 ? (
+				<h2>No results</h2>
+			) : (
+				<Flight searchResults={searchResults} />
+			)}
 		</div>
 	);
 }
