@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { DateTime } from "luxon";
 import Flight from "../Components/Flight";
 
 function Flights() {
 	const [searchResults, setSearchResults] = useState([]);
-	// const [flights, setFlights] = useState("");
 	const [isLoading, setIsLoading] = useState(true);
 	const [origin, setOrigin] = useState("PRG");
 	const [destination, setDestination] = useState("VLC");
 	const [number, setNumber] = useState(20);
-	const [directFlight, setDirectFlight] = useState(0);
+	const [directFlight, setDirectFlight] = useState("All flights");
 
 	const originCities = ["PRG", "SXF", "WAW", "PED", "AAA"]; // AAA is not valid
 	const destinationCities = ["VLC", "BCN", "MAD", "MXP", "ATH"];
 	const numberResults = [10, 20, 30, 40, 50];
+	const directOrTransfer = ["All flights", "Direct"];
 
 	async function fetchDataSearch() {
 		const response = await fetch(
-			`https://api.skypicker.com/flights?fly_from=${origin}&fly_to=${destination}&partner=picky&limit=${number}&direct_flights=${directFlight}`
+			`https://api.skypicker.com/flights?fly_from=${origin}&fly_to=${destination}&partner=picky&limit=${number}&direct_flights=${
+				directFlight === "Direct" ? 1 : 0
+			}`
 		);
 		const data = await response.json();
 		try {
@@ -34,7 +35,6 @@ function Flights() {
 	}, []);
 
 	function filter() {
-		// setDirectFlight(true) ? console.log("checked") : null;
 		fetchDataSearch();
 	}
 
@@ -85,19 +85,20 @@ function Flights() {
 				</label>
 				{/* Direct flight filter */}
 
-				{/* <label>
+				<label>
 					{" "}
 					Direct Flights
-					<form className="mx-2">
-						<input
-							type="checkbox"
-							name="direct"
-							id=""
-							defaultChecked={directFlight}
-							onChange={() => setDirectFlight(1)}
-						/>
+					<form className="border m-2">
+						{" "}
+						<select onChange={(e) => setDirectFlight(e.target.value)}>
+							{directOrTransfer.map((r, i) => (
+								<option key={i} value={r}>
+									{r}
+								</option>
+							))}
+						</select>
 					</form>
-				</label> */}
+				</label>
 
 				{/* Search with filter */}
 				<button className="border bg-green-300  p-1" onClick={filter}>
