@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Flight from "../Components/Flight";
+import Filter from '../Components/Filter';
 
 function Flights() {
 	const [searchResults, setSearchResults] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [origin, setOrigin] = useState("PRG");
 	const [destination, setDestination] = useState("VLC");
-	const [number, setNumber] = useState(20);
+	const [number, setNumber] = useState(5);
 	const [directFlight, setDirectFlight] = useState("All flights");
-
-	const originCities = ["PRG", "SXF", "WAW", "PED", "AAA"]; // AAA is not valid
-	const destinationCities = ["VLC", "BCN", "MAD", "MXP", "ATH"];
-	const numberResults = [10, 20, 30, 40, 50];
-	const directOrTransfer = ["All flights", "Direct"];
 
 	async function fetchDataSearch() {
 		const response = await fetch(
@@ -28,93 +24,41 @@ function Flights() {
 		} catch (err) {
 			console.error(err);
 		}
-	}
+	}	
 
 	useEffect(() => {
 		fetchDataSearch();
 	}, []);
 
-	function filter() {
-		fetchDataSearch();
+	function fiveMore() { 
+		setNumber(number + 5); 
+		console.log(number);
 	}
 
+	
 	return (
 		<main className="justify-center align-center p-5 ">
 			<h1 className="text-5xl col-span-3 text-center py-5 text-blue-500">All Flights</h1>
-			{/* origin form */}
-			<section className="flex justify-center items-center ">
-				<label>
-					Results:
-					<form className="border m-2">
-						{" "}
-						<select onChange={(e) => setNumber(e.target.value)} defaultValue={number}>
-							{numberResults.map((r, i) => (
-								<option key={i} value={r}>
-									Showing {r} Results
-								</option>
-							))}
-						</select>
-					</form>
-				</label>
-				<label>
-					From:
-					<form className="border m-2">
-						{" "}
-						<select onChange={(e) => setOrigin(e.target.value)}>
-							{originCities.map((r, i) => (
-								<option key={i} value={r}>
-									{r}
-								</option>
-							))}
-						</select>
-					</form>
-				</label>
-				{/* destination form */}
-				<label>
-					To:
-					<form className="border m-2">
-						{" "}
-						<select onChange={(e) => setDestination(e.target.value)}>
-							{destinationCities.map((r, i) => (
-								<option key={i} value={r}>
-									{r}
-								</option>
-							))}
-						</select>
-					</form>
-				</label>
-				{/* Direct flight filter */}
 
-				<label>
-					{" "}
-					Direct Flights
-					<form className="border m-2">
-						{" "}
-						<select onChange={(e) => setDirectFlight(e.target.value)}>
-							{directOrTransfer.map((r, i) => (
-								<option key={i} value={r}>
-									{r}
-								</option>
-							))}
-						</select>
-					</form>
-				</label>
+		<Filter fetchDataSearch={fetchDataSearch}/>
+		
+		{/* search results */}
 
-				{/* Search with filter */}
-				<button className="border bg-green-300  p-1" onClick={filter}>
-					Filter
-				</button>
-			</section>
-			{/* search results */}
+		{isLoading ? (
+			<h1>Loading...</h1>
+		) : searchResults.length === 0 ? (
+			<h2>No results</h2>
+		) : (
+			<Flight searchResults={searchResults} />
+		)}
 
-			{isLoading ? (
-				<h1>Loading...</h1>
-			) : searchResults.length === 0 ? (
-				<h2>No results</h2>
-			) : (
-				<Flight searchResults={searchResults} />
-			)}
-		</main>
+		<form>
+			<button onClick={fiveMore}>5 more results</button>
+		</form>
+
+</main>
+
+				
 	);
 }
 

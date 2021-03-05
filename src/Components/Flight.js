@@ -21,6 +21,8 @@ function Flight(props) {
 						</p>
 						<p>Flight duration: {item.fly_duration}</p>
 						<p>Price: {item.conversion.EUR} EUR </p>
+						{item.pnr_count > 1 ? (<p>transfers: {item.pnr_count-1}</p>) : (<p>Direct</p>)}  
+						<p>Flight Number: {item.route[0].airline}{item.route[0].operating_flight_no}</p>
 					</div>
 				</div>
 			))}
