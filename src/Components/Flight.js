@@ -6,7 +6,7 @@ function Flight(props) {
 	console.log(props);
 
 	return (
-		<section className="cards grid grid-cols-1">
+		<section className="cards grid grid-cols-2">
 			{props.searchResults.map((item, key) => (
 				<div key={key} className="border py-2 flex justify-center items-center m-2 bg-white">
 					<div className="flex justify-around px-5 grid grid-rows-2 grid-cols-2">

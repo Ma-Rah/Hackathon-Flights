@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Flight from "./Flight";
+// import ReactPaginate from "react-paginate";
 
 function Filter() {
 	// state section
@@ -50,7 +51,7 @@ function Filter() {
 	return (
 		<div>
 			{/* origin form */}
-			<section className="flex justify-center items-center ">
+			<section className="flex justify-center items-center border  ">
 				<label>
 					Results:
 					<form className="border m-2">
@@ -139,7 +140,7 @@ function Filter() {
 				</label>
 
 				{/* Search with filter */}
-				<button className="border bg-green-300  p-1" onClick={filter}>
+				<button className="border bg-green-300 p-1 mt-5" onClick={filter}>
 					Filter
 				</button>
 			</section>
@@ -147,7 +148,7 @@ function Filter() {
 			{isLoading ? (
 				<h1>Loading...</h1>
 			) : searchResults.length === 0 ? (
-				<h2>No results</h2>
+				<h2 className="text-4xl">No results</h2>
 			) : (
 				<Flight searchResults={searchResults} />
 			)}

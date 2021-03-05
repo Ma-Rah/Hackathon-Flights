@@ -5,7 +5,7 @@
 html,
 body {
 	height: 100%;
-	background-color: rgb(227, 252, 243);
+	background-color: rgb(234, 241, 245);
 }
 
 body {
@@ -14,8 +14,18 @@ body {
 		"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
+	/* background: center/cover no-repeat
+		url("https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1332&q=80"); */
 }
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	padding: 1em;
+	font-size: 1.5em;
 }

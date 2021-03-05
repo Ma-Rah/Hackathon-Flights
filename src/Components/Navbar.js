@@ -9,14 +9,14 @@ function Navbar() {
 				to="/"
 				activeStyle={{
 					fontWeight: "bold",
-					color: "red",
+					color: "tomato",
 				}}
 				className="text-3xl px-2"
 			>
 				Home
 			</NavLink>
 
-			<NavLink
+			{/* <NavLink
 				to="/search"
 				activeStyle={{
 					fontWeight: "bold",
@@ -25,13 +25,13 @@ function Navbar() {
 				className="text-2xl px-2"
 			>
 				Search
-			</NavLink>
+			</NavLink> */}
 
 			<NavLink
 				to="/flights"
 				activeStyle={{
 					fontWeight: "bold",
-					color: "red",
+					color: "tomato",
 				}}
 				className="text-2xl px-2"
 			>

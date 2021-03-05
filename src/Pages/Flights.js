@@ -33,7 +33,7 @@ function Flights() {
 
 	return (
 		<main className="justify-center align-center p-5 ">
-			<h1 className="text-5xl col-span-3 text-center py-5 text-blue-500">All Flights</h1>
+			<h1 className="text-5xl col-span-3 text-center py-5 text-red-400">All Flights</h1>
 			<Filter />
 		</main>
 	);

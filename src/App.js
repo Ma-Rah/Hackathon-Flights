@@ -13,7 +13,7 @@ function App() {
 				<Switch>
 					<Route component={Index} path="/" exact />
 					<Route component={Flights} path="/flights" />
-					<Route component={Search} path="/search" />
+					{/* <Route component={Search} path="/search" /> */}
 					{/* <Route component={FlightDetails} path="/flights/:slug" /> */}
 				</Switch>
 			</BrowserRouter>
