@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DateTime } from "luxon";
+import Flight from '../Components/Flight';
+
 
 function Flights() {
 	const [searchResults, setSearchResults] = useState([]);
@@ -8,8 +10,8 @@ function Flights() {
 	const [origin, setOrigin] = useState("PRG");
 	const [destination, setDestination] = useState("VLC");
 
-	const originCities = ["PRG", "ARN"];
-	const destinationCities = ["VLC", "ARN"];
+	const originCities = ["PRG", "SXF", "WAW", "PED", 'AAA'];
+	const destinationCities = ["VLC", "BCN", "MAD", "MXP", "ATH"];
 
 	/* <select className="p-2" setOrigin={selectValue} onChange={this.handleChange}>
 	<option value="">Filter by Origin</option>
@@ -35,9 +37,11 @@ function Flights() {
 			`https://api.skypicker.com/flights?fly_from=${origin}&fly_to=${destination}&partner=picky&limit=20`
 		);
 		const data = await response.json();
+		try{
 		setSearchResults(data && data.data);
 		console.log(data.data);
 		setIsLoading(false);
+		} catch (err) {console.error(err)};
 	}
 
 	useEffect(() => {
@@ -86,28 +90,12 @@ function Flights() {
 				</button>
 			</section>
 			{/* search results */}
-			{isLoading ? (
-				<h1>Loading...</h1>
-			) : (
-				<section className="cards grid grid-cols-2">
-					{searchResults.map((item, key) => (
-						<div key={key} className="border py-2 flex justify-center items-center m-2 bg-white">
-							<div className="flex justify-around px-5 grid grid-rows-2 grid-cols-2">
-								<p className=" px-5 text-2xl">From: {item.cityFrom}</p>
-								<p className=" px-5 text-2xl">To: {item.cityTo}</p>
 
-								<p className=" px-5">
-									Departure time: {DateTime.fromSeconds(item.dTime).toFormat("hh:mm MM-dd ")}
-								</p>
-								<p className=" px-5">
-									Arrival time: {DateTime.fromSeconds(item.aTime).toFormat("hh:mm MM-dd ")}
-								</p>
-								<p>Flight duration: {item.fly_duration}</p>
-								<p>Price: {item.conversion.EUR} EUR </p>
-							</div>
-						</div>
-					))}
-				</section>
+			
+
+			{isLoading ? (<h1>Loading...</h1>) 
+			: (
+				 searchResults.length === 0 ? (<h2>No results</h2>) : (<Flight searchResults={searchResults}/> )
 			)}
 		</main>
 	);
