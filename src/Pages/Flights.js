@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DateTime } from "luxon";
-import Flight from '../Components/Flight';
-
+import Flight from "../Components/Flight";
 
 function Flights() {
 	const [searchResults, setSearchResults] = useState([]);
@@ -9,39 +8,25 @@ function Flights() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [origin, setOrigin] = useState("PRG");
 	const [destination, setDestination] = useState("VLC");
+	const [number, setNumber] = useState(20);
+	const [directFlight, setDirectFlight] = useState(0);
 
-	const originCities = ["PRG", "SXF", "WAW", "PED", 'AAA'];
+	const originCities = ["PRG", "SXF", "WAW", "PED", "AAA"]; // AAA is not valid
 	const destinationCities = ["VLC", "BCN", "MAD", "MXP", "ATH"];
-
-	/* <select className="p-2" setOrigin={selectValue} onChange={this.handleChange}>
-	<option value="">Filter by Origin</option>
-	<option value="PRG">Prague</option>
-	<option value="Berlin">Berlin</option>
-	<option value="Warsaw">Warsaw</option>
-	<option value="Pardubice">Pardubice</option>
-	</select> */
-
-	// <form className="px-2">
-	// 	<select className="p-2">
-	// 		<option value="">Filter by Destination</option>
-	// 		<option value="Valencia">Valencia</option>
-	// 		<option value="Barcelona">Barcelona</option>
-	// 		<option value="Madrid">Madrid</option>
-	// 		<option value="Milano">Milano</option>
-	// 		<option value="Athens">Athens</option>
-	// 	</select>
-	// </form>;
+	const numberResults = [10, 20, 30, 40, 50];
 
 	async function fetchDataSearch() {
 		const response = await fetch(
-			`https://api.skypicker.com/flights?fly_from=${origin}&fly_to=${destination}&partner=picky&limit=20`
+			`https://api.skypicker.com/flights?fly_from=${origin}&fly_to=${destination}&partner=picky&limit=${number}&direct_flights=${directFlight}`
 		);
 		const data = await response.json();
-		try{
-		setSearchResults(data && data.data);
-		console.log(data.data);
-		setIsLoading(false);
-		} catch (err) {console.error(err)};
+		try {
+			setSearchResults(data && data.data);
+			console.log(data.data);
+			setIsLoading(false);
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	useEffect(() => {
@@ -49,14 +34,28 @@ function Flights() {
 	}, []);
 
 	function filter() {
+		// setDirectFlight(true) ? console.log("checked") : null;
 		fetchDataSearch();
 	}
 
 	return (
-		<main className="justify-center align-center p-5 bg-blue-50">
+		<main className="justify-center align-center p-5 ">
 			<h1 className="text-5xl col-span-3 text-center py-5 text-blue-500">All Flights</h1>
 			{/* origin form */}
 			<section className="flex justify-center items-center ">
+				<label>
+					Results:
+					<form className="border m-2">
+						{" "}
+						<select onChange={(e) => setNumber(e.target.value)} defaultValue={number}>
+							{numberResults.map((r, i) => (
+								<option key={i} value={r}>
+									Showing {r} Results
+								</option>
+							))}
+						</select>
+					</form>
+				</label>
 				<label>
 					From:
 					<form className="border m-2">
@@ -84,6 +83,22 @@ function Flights() {
 						</select>
 					</form>
 				</label>
+				{/* Direct flight filter */}
+
+				{/* <label>
+					{" "}
+					Direct Flights
+					<form className="mx-2">
+						<input
+							type="checkbox"
+							name="direct"
+							id=""
+							defaultChecked={directFlight}
+							onChange={() => setDirectFlight(1)}
+						/>
+					</form>
+				</label> */}
+
 				{/* Search with filter */}
 				<button className="border bg-green-300  p-1" onClick={filter}>
 					Filter
@@ -91,11 +106,12 @@ function Flights() {
 			</section>
 			{/* search results */}
 
-			
-
-			{isLoading ? (<h1>Loading...</h1>) 
-			: (
-				 searchResults.length === 0 ? (<h2>No results</h2>) : (<Flight searchResults={searchResults}/> )
+			{isLoading ? (
+				<h1>Loading...</h1>
+			) : searchResults.length === 0 ? (
+				<h2>No results</h2>
+			) : (
+				<Flight searchResults={searchResults} />
 			)}
 		</main>
 	);
