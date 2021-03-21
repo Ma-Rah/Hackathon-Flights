@@ -3,40 +3,28 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
 	return (
-		<nav className="p-5 bg-gray-500 text-white">
+		<nav className="p-2 bg-blue-900 text-white flex flex-col sm:flex-row justify-center text-center">
 			<NavLink
-				exact
 				to="/"
+				exact
 				activeStyle={{
 					fontWeight: "bold",
-					color: "tomato",
 				}}
 				className="text-3xl px-2"
 			>
-				Home
+				Flight Finder
 			</NavLink>
 
-			{/* <NavLink
+			{/* WIP */}
+			{/* <NavLink 
 				to="/search"
 				activeStyle={{
 					fontWeight: "bold",
-					color: "red",
 				}}
 				className="text-2xl px-2"
 			>
-				Search
+				Search Flights
 			</NavLink> */}
-
-			<NavLink
-				to="/flights"
-				activeStyle={{
-					fontWeight: "bold",
-					color: "tomato",
-				}}
-				className="text-2xl px-2"
-			>
-				Flights
-			</NavLink>
 		</nav>
 	);
 }

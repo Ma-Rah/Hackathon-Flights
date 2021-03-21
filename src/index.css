@@ -1,31 +1,15 @@
 @import url("https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css");
 @import url("https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Titillium+Web:wght@400;700&display=swap");
 
-html,
-body {
-	height: 100%;
-	background-color: rgb(234, 241, 245);
+* {
+	box-sizing: border-box;
 }
 
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-		"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	font-family: "Titillium Web", sans-serif, Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow: hidden;
-	/* background: center/cover no-repeat
-		url("https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1332&q=80"); */
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-.pagination {
-	display: flex;
-	justify-content: center;
-	padding: 1em;
-	font-size: 1.5em;
+	background: center/cover no-repeat url("https://picsum.photos/id/849/3202/2401");
 }
