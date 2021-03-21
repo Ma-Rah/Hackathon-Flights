@@ -56,9 +56,10 @@ function TopFlights() {
 	}, [flights]);
 
 	useEffect(() => {
-		fetchFlights();
 		setIsLoading(true);
-	}, [sorting, directFlight, destination]);
+
+		fetchFlights();
+	}, [sorting, directFlight, destination]); //eslint-disable-line react-hooks/exhaustive-deps
 
 	if (searchResults.length === 0) {
 		return <div>Loading...</div>;

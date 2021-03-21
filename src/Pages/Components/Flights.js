@@ -46,7 +46,7 @@ function Flights(props) {
 						<span className="text-green-600 text-2xl">Best Value</span>
 					) : null}
 					<div className="flex justify-center">
-						<a href={r.deep_link} target="_blank">
+						<a href={r.deep_link} target="_blank" rel="noreferrer">
 							<div className="border p-1 mx-1 cursor-pointer transform hover:scale-110 hover:bg-green-200 duration-100 ">
 								Book this flight
 							</div>
