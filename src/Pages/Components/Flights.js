@@ -5,7 +5,7 @@ function Flights(props) {
 
 	return (
 		<div className="flex flex-col justify-center items-center">
-			{flights.map((r, i) => (
+			{flights.slice(0,5).map((r, i) => (
 				<div
 					key={i}
 					value={i}
