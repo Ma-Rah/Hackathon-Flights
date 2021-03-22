@@ -25,7 +25,7 @@ function TopFlightsList(props) {
 	return (
 		<>
 			<div className="flex flex-col justify-center items-center bg-white w-full rounded">
-				<h1 className="text-4xl p-1 text-black  ">Top Destinations From Prague</h1>
+				<h1 className="text-3xl p-1 text-black  ">Top Destinations From Prague</h1>
 				{destination ? (
 					<h2 className="text-2xl p-1 text-black ">Searching for flights...</h2>
 				) : (
