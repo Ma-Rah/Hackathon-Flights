@@ -8,7 +8,7 @@ function App() {
 		<BrowserRouter>
 			<Navbar />
 			<Switch>
-				<main className=" min-h-screen flex justify-center text-center ">
+				<main className="flex justify-center text-center ">
 					<div className="w-full sm:w-1/2 m-5 ">
 						<Route component={TopFlights} path="/" exact />
 						{/* <Route component={Search} path="/search" /> */}
