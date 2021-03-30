@@ -73,7 +73,7 @@ function Search() {
 	}, [sorting, directFlight]);
 
 	return (
-		<div className="mt-1 flex flex-col text-black  md:mx-2">
+		<div className=" flex flex-col text-black md:mx-2">
 			<form onSubmit={searchLocations} className="bg-white p-2">
 				<div className="grid grid-cols-1 grid-rows-2 ">
 					<div className="w-full flex justify-center my-1 ">
@@ -115,7 +115,7 @@ function Search() {
 						>
 							{to && to.length > 0 ? (
 								to.map((r, i) => (
-									<option key={i} value={i.id}>
+									<option key={i} value={r.id}>
 										{r.city.name} - {r.name}
 									</option>
 								))
@@ -149,18 +149,16 @@ function Search() {
 				<h2 className="text-lg p-1 text-green-600 bg-white ">Loading results...</h2>
 			) : (
 				<>
+					<Filter
+						setSorting={setSorting}
+						setIsLoading={setIsLoading}
+						setDirectFlight={setDirectFlight}
+						sorting={sorting}
+						directFlight={directFlight}
+						isLoading={isLoading}
+					/>
 					{flights && flights.length > 0 ? (
-						<>
-							<Filter
-								setSorting={setSorting}
-								setIsLoading={setIsLoading}
-								setDirectFlight={setDirectFlight}
-								sorting={sorting}
-								directFlight={directFlight}
-								isLoading={isLoading}
-							/>
-							<Flights flights={flights} sorting={sorting} />
-						</>
+						<Flights flights={flights} sorting={sorting} />
 					) : flights && flights.length === 0 ? (
 						<div className="bg-white text-2xl p-2 text-red-500">No flights found</div>
 					) : null}

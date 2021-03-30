@@ -4,12 +4,12 @@ function Flights(props) {
 	const { flights, sorting } = props;
 
 	return (
-		<div className="flex flex-col justify-center items-center">
+		<div className="mt-1 flex flex-col justify-center items-center">
 			{flights.slice(0, 5).map((r, i) => (
 				<div
 					key={i}
 					value={i}
-					className="bg-white m-1 p-1 border w-full cursor-pointer transform hover:border-green-700 duration-100 text-xs sm:text-lg leading-relaxed"
+					className="bg-white my-1 p-1 border w-full cursor-pointer transform hover:border-green-700 duration-100 text-xs sm:text-lg leading-relaxed"
 				>
 					<div className="flex justify-between">
 						<span>From: {r.cityFrom}</span>
@@ -55,16 +55,16 @@ function Flights(props) {
 							className="h-5 w-5 md:h-10 md:w-10 "
 						/>
 					</div>
-					<a href={r.deep_link} target="_blank" rel="noreferrer">
-						<button className="border p-1 cursor-pointer transform hover:scale-105 hover:bg-green-200 duration-100">
-							Book this flight
-						</button>
-					</a>
 					{i === 0 && sorting === "quality" ? (
 						<div className="flex justify-center">
 							<span className="text-green-600 text-center">Recommended</span>
 						</div>
 					) : null}
+					<a href={r.deep_link} target="_blank" rel="noreferrer">
+						<button className="border p-1 cursor-pointer transform hover:scale-105 hover:bg-green-200 duration-100">
+							Book this flight
+						</button>
+					</a>
 				</div>
 			))}
 		</div>
