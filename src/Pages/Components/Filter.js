@@ -2,7 +2,7 @@ function Filter(props) {
 	const { sorting, setSorting, isLoading, setIsLoading, setDirectFlight, directFlight } = props;
 	return (
 		<div className="flex flex-col justify-center items-center my-1">
-			<div className="flex flex-col justify-center items-center bg-white w-full">
+			<div className="flex flex-col justify-center items-center bg-white w-full mt-1">
 				<span className=" text-xl ">Sort by:</span>
 				<form className="text-gray-800 text-lg flex bg-white p-2 ">
 					{" "}
