@@ -12,7 +12,9 @@ function Flights(props) {
 					className="bg-white my-1 p-1 border w-full cursor-pointer transform hover:border-green-700 duration-100 text-xs sm:text-lg leading-relaxed"
 				>
 					<div className="flex justify-between">
-						<span>From: {r.cityFrom}</span>
+						<span>
+							From: {r.cityFrom} - {r.countryFrom.name}
+						</span>
 
 						<span>
 							To: {r.cityTo} - {r.countryTo.name}

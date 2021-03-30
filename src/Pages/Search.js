@@ -57,7 +57,7 @@ function Search() {
 
 	function searchLocations(e) {
 		e.preventDefault();
-		if (originSearch && destinationSearch) {
+		if (originSearch || destinationSearch) {
 			fetchLocations();
 		} else {
 			return;
@@ -82,6 +82,7 @@ function Search() {
 							onChange={(e) => setOriginSearch(e.target.value)}
 							className="w-1/3 border mr-1"
 							placeholder=" From"
+							onBlur={searchLocations}
 						/>
 
 						<select
@@ -92,7 +93,7 @@ function Search() {
 							{from && from.length > 0 ? (
 								from.map((r, i) => (
 									<option key={i} value={r.id}>
-										{r.city.name} - {r.name}
+										{r.city.name} - {r.code} {r.name}
 									</option>
 								))
 							) : (
@@ -106,6 +107,7 @@ function Search() {
 							onChange={(e) => setDestinationSearch(e.target.value)}
 							className="w-1/3 border mr-1 "
 							placeholder=" To"
+							onBlur={searchLocations}
 						/>
 
 						<select
@@ -116,7 +118,7 @@ function Search() {
 							{to && to.length > 0 ? (
 								to.map((r, i) => (
 									<option key={i} value={r.id}>
-										{r.city.name} - {r.name}
+										{r.city.name} - {r.code} {r.name}
 									</option>
 								))
 							) : (
