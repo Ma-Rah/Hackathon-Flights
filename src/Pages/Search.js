@@ -149,18 +149,31 @@ function Search() {
 				<h2 className="text-lg p-1 text-green-600 bg-white ">Loading results...</h2>
 			) : (
 				<>
-					<Filter
-						setSorting={setSorting}
-						setIsLoading={setIsLoading}
-						setDirectFlight={setDirectFlight}
-						sorting={sorting}
-						directFlight={directFlight}
-						isLoading={isLoading}
-					/>
 					{flights && flights.length > 0 ? (
-						<Flights flights={flights} sorting={sorting} />
+						<>
+							<Filter
+								setSorting={setSorting}
+								setIsLoading={setIsLoading}
+								setDirectFlight={setDirectFlight}
+								sorting={sorting}
+								directFlight={directFlight}
+								isLoading={isLoading}
+							/>
+							<Flights flights={flights} sorting={sorting} />{" "}
+						</>
 					) : flights && flights.length === 0 ? (
-						<div className="bg-white text-2xl p-2 text-red-500">No flights found</div>
+						<>
+							<Filter
+								setSorting={setSorting}
+								setIsLoading={setIsLoading}
+								setDirectFlight={setDirectFlight}
+								sorting={sorting}
+								directFlight={directFlight}
+								isLoading={isLoading}
+							/>
+
+							<div className="bg-white text-2xl p-2 text-red-500">No flights found</div>
+						</>
 					) : null}
 				</>
 			)}
