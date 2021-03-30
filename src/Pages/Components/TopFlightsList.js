@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function TopFlightsList(props) {
-	const { destination, searchResults, setDestination } = props.listProps;
+	const { destination, searchResults, setDestination } = props;
 
 	const [pageIndex, setPageIndex] = useState([0, 10]);
 
@@ -32,7 +32,7 @@ function TopFlightsList(props) {
 					<h2 className="text-1xl p-1 text-black ">Select a destination</h2>
 				)}
 			</div>
-			{/* <div className="flex justify-center flex-col flex-nowrap"> */}
+
 			<div className="flex flex-col justify-center items-center ">
 				{searchResults.slice(pageIndex[0], pageIndex[1]).map((r, i) => (
 					<div
@@ -59,7 +59,6 @@ function TopFlightsList(props) {
 					Next 10 Results
 				</div>
 			</div>
-			{/* </div> */}
 		</div>
 	);
 }

@@ -1,8 +1,8 @@
 import { DateTime } from "luxon";
 
 function Flights(props) {
-	const { flights, sorting } = props.flightProps;
-	console.log(props);
+	const { flights, sorting } = props;
+
 	return (
 		<div className="flex flex-col justify-center items-center">
 			{flights.slice(0, 5).map((r, i) => (
@@ -42,9 +42,6 @@ function Flights(props) {
 							)}
 						</span>
 					</div>
-					{/* {i === 0 && sorting === "quality" ? (
-						<span className="text-green-600 text-lg"> Recommended</span>
-					) : null} */}
 					<div className="flex justify-between">
 						<div>
 							{r.pnr_count > 1 ? (
