@@ -91,8 +91,8 @@ function Search() {
 						>
 							{from && from.length > 0 ? (
 								from.map((r, i) => (
-									<option key={i} value={r.id}>
-										{r.name} - {r.city.country.name}
+									<option key={i} value={i.id}>
+										{r.city.name} - {r.name}
 									</option>
 								))
 							) : (
@@ -115,8 +115,8 @@ function Search() {
 						>
 							{to && to.length > 0 ? (
 								to.map((r, i) => (
-									<option key={i} value={r.id}>
-										{r.name} - {r.city.country.name}
+									<option key={i} value={i.id}>
+										{r.city.name} - {r.name}
 									</option>
 								))
 							) : (
