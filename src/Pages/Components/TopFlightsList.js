@@ -24,7 +24,7 @@ function TopFlightsList(props) {
 
 	return (
 		<>
-			<div className="flex flex-col justify-center items-center bg-white w-full rounded">
+			<div className="flex flex-col justify-center items-center bg-white w-full ">
 				<h1 className="text-4xl p-1 text-black  ">Top Destinations From Prague</h1>
 				{destination ? (
 					<h2 className="text-2xl p-1 text-black ">Searching for flights...</h2>
@@ -33,12 +33,12 @@ function TopFlightsList(props) {
 				)}
 			</div>
 			<div className="flex justify-center flex-col flex-nowrap">
-				<div className="flex flex-col justify-center items-center">
+				<div className="flex flex-col justify-center items-center w-full">
 					{searchResults.slice(pageIndex[0], pageIndex[1]).map((r, i) => (
 						<div
 							key={i}
 							value={i}
-							className="bg-white m-1 p-2 border w-10/12 md:w-1/2 cursor-pointer transform hover:scale-110 hover:bg-blue-50 duration-100"
+							className="bg-white m-1 p-2 border w-full cursor-pointer transform hover:scale-110 hover:bg-blue-50 duration-100"
 							onClick={() => setDestination(r.code)}
 						>
 							{r.name} - {r.country.name}

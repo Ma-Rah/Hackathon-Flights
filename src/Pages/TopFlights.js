@@ -67,7 +67,7 @@ function TopFlights() {
 		return (
 			<div className="flex justify-center flex-col flex-nowrap">
 				{/* Sorting */}
-				<div className="flex flex-col justify-center items-center">
+				<div className="flex flex-col justify-center items-center ">
 					<div className="flex flex-col justify-center items-center bg-white w-3/4">
 						<button onClick={() => setDestination(null)}>⬅ Back to top destinations</button>
 						<span className=" text-xl ">Sort by:</span>
