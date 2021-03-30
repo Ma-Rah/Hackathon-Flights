@@ -67,11 +67,13 @@ function TopFlights() {
 		return (
 			<div className="flex justify-center flex-col flex-nowrap">
 				{/* Sorting */}
-				<div className="flex flex-col justify-center items-center ">
-					<div className="flex flex-col justify-center items-center bg-white w-3/4">
-						<button onClick={() => setDestination(null)}>⬅ Back to top destinations</button>
+				<div className="flex flex-col justify-center items-center my-1">
+					<div className="flex flex-col justify-center items-center bg-white w-full">
+						<button onClick={() => setDestination(null)} className="my-2 text-xl">
+							⬅ Back to top destinations
+						</button>
 						<span className=" text-xl ">Sort by:</span>
-						<form className="m-2 text-gray-800 text-lg flex bg-white p-2 ">
+						<form className="text-gray-800 text-lg flex bg-white p-2 ">
 							{" "}
 							<span className="px-2">
 								<select
@@ -98,15 +100,12 @@ function TopFlights() {
 								Direct
 							</span>
 						</form>
+						{isLoading ? (
+							<h2 className="text-2xl p-1 text-green-600 ">Loading results...</h2>
+						) : null}
 					</div>
 				</div>
-				{isLoading ? (
-					<h2 className="text-2xl p-1 text-black ">Loading results...</h2>
-				) : (
-					<>
-						<Flights flightProps={flightProps} />
-					</>
-				)}
+				{!isLoading && <Flights flightProps={flightProps} />}
 			</div>
 		);
 	} else {

@@ -9,7 +9,7 @@ function App() {
 			<Navbar />
 			<Switch>
 				<main className="flex justify-center text-center ">
-					<div className="w-full sm:w-1/2 m-5 ">
+					<div className="w-full lg:w-1/2">
 						<Route component={TopFlights} path="/" exact />
 						{/* <Route component={Search} path="/search" /> */}
 					</div>
