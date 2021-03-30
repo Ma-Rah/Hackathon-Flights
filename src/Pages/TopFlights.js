@@ -44,12 +44,17 @@ function TopFlights() {
 	}, [destination, sorting, directFlight]);
 
 	if (searchResults.length === 0) {
-		return <div>Loading...</div>;
+		return <div className="bg-white p-4">Loading...</div>;
 	} else if (flights) {
 		return (
 			<div className="flex justify-center flex-col flex-nowrap">
+				<button
+					onClick={() => setDestination(null)}
+					className="my-2 text-xl bg-white p-2 rounded self-center"
+				>
+					⬅ Back to top destinations
+				</button>
 				<Filter
-					setDestination={setDestination}
 					setSorting={setSorting}
 					setIsLoading={setIsLoading}
 					setDirectFlight={setDirectFlight}

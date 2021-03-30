@@ -9,22 +9,23 @@ function Navbar() {
 				exact
 				activeStyle={{
 					fontWeight: "bold",
+					fontSize: "2rem",
 				}}
-				className="text-3xl px-2"
+				className="text-2xl px-2"
 			>
 				Flight Finder
 			</NavLink>
 
-			{/* WIP */}
-			{/* <NavLink 
+			<NavLink
 				to="/search"
 				activeStyle={{
 					fontWeight: "bold",
+					fontSize: "2rem",
 				}}
 				className="text-2xl px-2"
 			>
 				Search Flights
-			</NavLink> */}
+			</NavLink>
 		</nav>
 	);
 }

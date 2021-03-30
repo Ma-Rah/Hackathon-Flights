@@ -1,20 +1,21 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Pages/Components/Navbar";
-// import Search from "./Pages/Search"; WIP
+import Search from "./Pages/Search";
 import TopFlights from "./Pages/TopFlights";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Navbar />
-			<Switch>
-				<main className="flex justify-center text-center ">
-					<div className="w-full lg:w-1/2">
+
+			<main className="flex justify-center text-center ">
+				<div className="w-full md:w-3/4 lg:w-1/2">
+					<Switch>
 						<Route component={TopFlights} path="/" exact />
-						{/* <Route component={Search} path="/search" /> */}
-					</div>
-				</main>
-			</Switch>
+						<Route component={Search} path="/search" />
+					</Switch>
+				</div>
+			</main>
 		</BrowserRouter>
 	);
 }
