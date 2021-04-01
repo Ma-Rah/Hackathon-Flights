@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filter from "./Components/Filter";
 import Flights from "./Components/Flights";
 import TopFlightsList from "./Components/TopFlightsList";
+import Loader from "react-loader-spinner";
 
 function TopFlights() {
 	// State section
@@ -44,7 +45,11 @@ function TopFlights() {
 	}, [destination, sorting, directFlight]);
 
 	if (searchResults.length === 0) {
-		return <div className="bg-white p-4">Loading...</div>;
+		return (
+			<div className="flex justify-center bg-white py-5">
+				<Loader type="Oval" color="#00BFFF" height={40} width={40} />
+			</div>
+		);
 	} else if (flights) {
 		return (
 			<div className="flex justify-center flex-col flex-nowrap">

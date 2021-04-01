@@ -1,3 +1,5 @@
+import Loader from "react-loader-spinner";
+
 function Filter(props) {
 	const { sorting, setSorting, isLoading, setIsLoading, setDirectFlight, directFlight } = props;
 	return (
@@ -29,7 +31,11 @@ function Filter(props) {
 						Direct
 					</span>
 				</form>
-				{isLoading ? <h2 className="text-2xl p-1 text-green-600 ">Loading results...</h2> : null}
+				{isLoading ? (
+					<div className="flex justify-center bg-white py-5">
+						<Loader type="Oval" color="#00BFFF" height={40} width={40} />
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

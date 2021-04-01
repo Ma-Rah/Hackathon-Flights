@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Flights from "./Components/Flights";
 import Filter from "./Components/Filter";
+import Loader from "react-loader-spinner";
 
 function Search() {
 	// state section
@@ -148,7 +149,9 @@ function Search() {
 			</form>
 
 			{isLoading ? (
-				<h2 className="text-lg p-1 text-green-600 bg-white ">Loading results...</h2>
+				<div className="flex justify-center bg-white py-5">
+					<Loader type="Oval" color="#00BFFF" height={40} width={40} />
+				</div>
 			) : (
 				<>
 					{flights && flights.length > 0 ? (
