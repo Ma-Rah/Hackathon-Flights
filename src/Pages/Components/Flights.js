@@ -21,8 +21,8 @@ function Flights(props) {
 						</span>
 					</div>
 					<div className="flex justify-between">
-						<span>Departure: {DateTime.fromSeconds(r.dTime).toFormat("hh:mm MM-dd ")}</span>
-						<span>Arrival: {DateTime.fromSeconds(r.aTime).toFormat("hh:mm MM-dd ")}</span>
+						<span>Departure: {DateTime.fromSeconds(r.dTime).toFormat("MM-dd ")}</span>
+						<span>Arrival: {DateTime.fromSeconds(r.aTime).toFormat("MM-dd ")}</span>
 					</div>
 
 					<div className="flex justify-between">
